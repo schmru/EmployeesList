@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Employee {
+struct Employee: Hashable {
     var name: String
     var lastName: String
     var age: Int

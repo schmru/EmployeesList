@@ -13,10 +13,16 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.employess, id: \.name) { employee in
+                ForEach(viewModel.employess, id: \.self) { employee in
                     VStack(alignment: .leading)  {
                         Text(employee.name + " " + employee.lastName)
                         Text("Age: \(employee.age)")
+                    }
+                }
+            }.toolbar {
+                ToolbarItem {
+                    NavigationLink(destination: EmployeeView(saveFunction: {employee in viewModel.addNew(emloyee: employee)})) {
+                        Label("Add Employee", systemImage: "plus")
                     }
                 }
             }

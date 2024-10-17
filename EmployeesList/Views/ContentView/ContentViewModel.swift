@@ -9,4 +9,8 @@ import SwiftUI
 
 final class ContentViewModel: ObservableObject {
     @Published var employess: [Employee] = []
+    
+    func addNew(emloyee: Employee) {
+        employess.append(emloyee)
+    }
 }
