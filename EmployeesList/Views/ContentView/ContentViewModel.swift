@@ -13,4 +13,8 @@ final class ContentViewModel: ObservableObject {
     func addNew(emloyee: Employee) {
         employess.append(emloyee)
     }
+    
+    func deleteItem(offsets: IndexSet) {
+        employess.remove(atOffsets: offsets)
+    }
 }

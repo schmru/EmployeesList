@@ -19,6 +19,7 @@ struct ContentView: View {
                         Text("Age: \(employee.age)")
                     }
                 }
+                .onDelete(perform: viewModel.deleteItem)
             }.toolbar {
                 ToolbarItem {
                     NavigationLink(destination: EmployeeView(saveFunction: {employee in viewModel.addNew(emloyee: employee)})) {
