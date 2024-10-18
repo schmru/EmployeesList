@@ -40,7 +40,8 @@ struct EmployeeView: View {
         .padding(.horizontal, 16.0)
         Button("Save data") {
             if !name.isEmpty && !lastName.isEmpty && !age.isEmpty {
-                saveFunction(.init(name: name,
+                saveFunction(.init(id: UUID(),
+                                   name: name,
                                    lastName: lastName,
                                    age: Int(age) ?? 0))
                 dismiss()

@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Employee: Hashable {
+struct Employee {
+    var id: UUID
     var name: String
     var lastName: String
     var age: Int
