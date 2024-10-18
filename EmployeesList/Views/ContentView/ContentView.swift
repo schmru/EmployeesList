@@ -19,9 +19,12 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(employess, id: \.self) { employee in
-                    VStack(alignment: .leading)  {
-                        Text((employee.name ?? "") + " " + (employee.lastName ?? ""))
-                        Text("Age: \(employee.age)")
+                    NavigationLink(destination: EmployeeView(saveFunction: {employee in addNew(employee: employee)},
+                                                             employee: .init(from: employee))) {
+                        VStack(alignment: .leading)  {
+                            Text((employee.name ?? "") + " " + (employee.lastName ?? ""))
+                            Text("Age: \(employee.age)")
+                        }
                     }
                 }
                 .onDelete(perform: deleteItem)
@@ -37,11 +40,11 @@ struct ContentView: View {
     
     private func addNew(employee: Employee) {
         withAnimation {
-            let newEmployee = EmployeeDB(context: viewContext)
-            newEmployee.id = employee.id
-            newEmployee.name = employee.name
-            newEmployee.lastName = employee.lastName
-            newEmployee.age = Int16(employee.age)
+            let employeeDB = employess.first {$0.id == employee.id} ?? EmployeeDB(context: viewContext)
+            employeeDB.id = employee.id
+            employeeDB.name = employee.name
+            employeeDB.lastName = employee.lastName
+            employeeDB.age = employee.age
             do {
                 try viewContext.save()
             } catch {

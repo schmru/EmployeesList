@@ -11,12 +11,20 @@ struct EmployeeView: View {
     @State var name: String = ""
     @State var lastName: String = ""
     @State var age: String = ""
+    private var id = UUID()
     private let saveFunction: (Employee) -> Void
     
     @Environment(\.dismiss) private var dismiss
     
-    init(saveFunction: @escaping (Employee) -> Void) {
+    init(saveFunction: @escaping (Employee) -> Void,
+         employee: Employee? = nil) {
         self.saveFunction = saveFunction
+        if let employee = employee {
+            id = employee.id
+            _name = State(initialValue: employee.name)
+            _lastName = State(initialValue: employee.lastName)
+            _age = State(initialValue: "\(employee.age)")
+        }
     }
 
     var body: some View {
@@ -40,10 +48,10 @@ struct EmployeeView: View {
         .padding(.horizontal, 16.0)
         Button("Save data") {
             if !name.isEmpty && !lastName.isEmpty && !age.isEmpty {
-                saveFunction(.init(id: UUID(),
+                saveFunction(.init(id: id,
                                    name: name,
                                    lastName: lastName,
-                                   age: Int(age) ?? 0))
+                                   age: Int16(age) ?? 0))
                 dismiss()
             }
         }
