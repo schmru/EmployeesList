@@ -19,7 +19,7 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(employess, id: \.self) { employee in
-                    NavigationLink(destination: EmployeeView(saveFunction: {employee in addNew(employee: employee)},
+                    NavigationLink(destination: EmployeeView(saveFunction: {employee in save(employee: employee)},
                                                              employee: .init(from: employee))) {
                         VStack(alignment: .leading)  {
                             Text((employee.name ?? "") + " " + (employee.lastName ?? ""))
@@ -29,9 +29,16 @@ struct ContentView: View {
                     }
                 }
                 .onDelete(perform: deleteItem)
-            }.toolbar {
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    NavigationLink(destination: StatisticView(employees: parseDBData())) {
+                        Label("Statistic", systemImage: "info")
+                    }
+                }
+                
                 ToolbarItem {
-                    NavigationLink(destination: EmployeeView(saveFunction: {employee in addNew(employee: employee)})) {
+                    NavigationLink(destination: EmployeeView(saveFunction: {employee in save(employee: employee)})) {
                         Label("Add Employee", systemImage: "plus")
                     }
                 }
@@ -39,7 +46,7 @@ struct ContentView: View {
         }
     }
     
-    private func addNew(employee: Employee) {
+    private func save(employee: Employee) {
         withAnimation {
             let employeeDB = employess.first {$0.id == employee.id} ?? EmployeeDB(context: viewContext)
             employeeDB.id = employee.id
@@ -66,6 +73,12 @@ struct ContentView: View {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
+    }
+    
+    private func parseDBData() -> [Employee] {
+        return employess.map({ employee in
+            Employee(from: employee)
+        })
     }
 }
 
