@@ -12,16 +12,19 @@ struct Employee {
     var name: String
     var lastName: String
     var age: Int16
+    var gender: Int16
     
     init(id: UUID,
          name: String,
          lastName: String,
-         age: Int16)
+         age: Int16,
+         gender: Int16)
     {
         self.id = id
         self.name = name
         self.lastName = lastName
         self.age = age
+        self.gender = gender
     }
     
     init(from employeeDB: EmployeeDB) {
@@ -29,5 +32,6 @@ struct Employee {
         self.name = employeeDB.name ?? ""
         self.lastName = employeeDB.lastName ?? ""
         self.age = employeeDB.age
+        self.gender = employeeDB.gender
     }
 }

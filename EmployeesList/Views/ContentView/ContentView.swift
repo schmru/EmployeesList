@@ -24,6 +24,7 @@ struct ContentView: View {
                         VStack(alignment: .leading)  {
                             Text((employee.name ?? "") + " " + (employee.lastName ?? ""))
                             Text("Age: \(employee.age)")
+                            Text("Gender: \(employee.gender == 1 ? "Male" : "Female")")
                         }
                     }
                 }
@@ -45,6 +46,7 @@ struct ContentView: View {
             employeeDB.name = employee.name
             employeeDB.lastName = employee.lastName
             employeeDB.age = employee.age
+            employeeDB.gender = employee.gender
             do {
                 try viewContext.save()
             } catch {
