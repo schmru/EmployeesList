@@ -41,6 +41,7 @@ struct ContentView: View {
                     NavigationLink(destination: EmployeeView(saveFunction: {employee in save(employee: employee)})) {
                         Label("Add Employee", systemImage: "plus")
                     }
+                    .accessibilityIdentifier("AddButton")
                 }
             }
         }
