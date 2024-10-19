@@ -11,8 +11,8 @@ final class DataManager {
     static let shared = DataManager()
     private let context = PersistenceController.shared.container.viewContext
     
-    func save(employee: Employee, into employess: FetchedResults<EmployeeDB>) {
-            let employeeDB = employess.first {$0.id == employee.id} ?? EmployeeDB(context: context)
+    func saveOrUpdate(employee: Employee, existingEmployee: EmployeeDB? = nil) {
+            let employeeDB = existingEmployee ?? EmployeeDB(context: context)
             employeeDB.id = employee.id
             employeeDB.name = employee.name
             employeeDB.lastName = employee.lastName

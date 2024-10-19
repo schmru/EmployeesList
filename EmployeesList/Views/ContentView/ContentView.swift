@@ -49,7 +49,7 @@ struct ContentView: View {
     
     private func save(employee: Employee) {
         withAnimation {
-            dataManager.save(employee: employee, into: employess)
+            dataManager.saveOrUpdate(employee: employee, existingEmployee: employess.first {$0.id == employee.id})
         }
     }
     
