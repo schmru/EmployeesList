@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    private let dataManager = DataManager.shared
     
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \EmployeeDB.id, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \EmployeeDB.name, ascending: true)],
         animation: .default)
     private var employess: FetchedResults<EmployeeDB>
     
@@ -28,7 +28,7 @@ struct ContentView: View {
                         }
                     }
                 }
-                .onDelete(perform: deleteItem)
+                .onDelete(perform: deleteEmployee)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -49,30 +49,13 @@ struct ContentView: View {
     
     private func save(employee: Employee) {
         withAnimation {
-            let employeeDB = employess.first {$0.id == employee.id} ?? EmployeeDB(context: viewContext)
-            employeeDB.id = employee.id
-            employeeDB.name = employee.name
-            employeeDB.lastName = employee.lastName
-            employeeDB.age = employee.age
-            employeeDB.gender = employee.gender
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            dataManager.save(employee: employee, into: employess)
         }
     }
     
-    private func deleteItem(offsets: IndexSet) {
+    private func deleteEmployee(offsets: IndexSet) {
         withAnimation {
-            offsets.map { employess[$0] }.forEach(viewContext.delete)
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            dataManager.deleteEmployee(offsets: offsets, from: employess)
         }
     }
     

@@ -20,6 +20,7 @@
 		71B10A492CC3D7C500DFB862 /* EmployeesList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71B10A472CC3D7C500DFB862 /* EmployeesList.xcdatamodeld */; };
 		71B10A4C2CC3EC1E00DFB862 /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B10A4B2CC3EC1E00DFB862 /* StatisticView.swift */; };
 		71B10A4F2CC40FA900DFB862 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B10A4E2CC40FA900DFB862 /* Double+Extensions.swift */; };
+		71B10A522CC4179C00DFB862 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B10A512CC4179C00DFB862 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		71B10A482CC3D7C500DFB862 /* EmployeesList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EmployeesList.xcdatamodel; sourceTree = "<group>"; };
 		71B10A4B2CC3EC1E00DFB862 /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
 		71B10A4E2CC40FA900DFB862 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
+		71B10A512CC4179C00DFB862 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		71B109FC2CBFD1B900DFB862 = {
 			isa = PBXGroup;
 			children = (
+				71B10A502CC4178300DFB862 /* DataManager */,
 				71B10A4D2CC40F8700DFB862 /* Extensions */,
 				71B10A072CBFD1B900DFB862 /* EmployeesList */,
 				71B10A1D2CBFD1BD00DFB862 /* EmployeesListTests */,
@@ -191,6 +194,14 @@
 				71B10A4E2CC40FA900DFB862 /* Double+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		71B10A502CC4178300DFB862 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				71B10A512CC4179C00DFB862 /* DataManager.swift */,
+			);
+			path = DataManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +341,7 @@
 				71B10A412CC001E000DFB862 /* EmployeeView.swift in Sources */,
 				71B10A432CC18B6D00DFB862 /* Persistence.swift in Sources */,
 				71B10A0B2CBFD1B900DFB862 /* ContentView.swift in Sources */,
+				71B10A522CC4179C00DFB862 /* DataManager.swift in Sources */,
 				71B10A092CBFD1B900DFB862 /* EmployeesListApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
